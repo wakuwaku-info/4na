@@ -1,0 +1,112 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/styles.css b/styles.css
+new file mode 100644
+index 0000000000000000000000000000000000000000..5ab75a4338f92192cce3a0b880aa9834961dcc8c
+--- /dev/null
++++ b/styles.css
+@@ -0,0 +1,102 @@
++:root {
++  --bg: #080808;
++  --text: #f3f3f3;
++  --muted: #b8b8b8;
++  --line: rgba(255, 255, 255, 0.18);
++  --seat-red: #bf1616;
++  --paper: #f6edd7;
++}
++* { box-sizing: border-box; }
++html, body {
++  margin: 0; padding: 0; background: var(--bg); color: var(--text);
++  font-family: "Noto Sans JP", sans-serif;
++}
++body { overflow-x: hidden; }
++.hero {
++  position: relative; min-height: 100vh;
++  background: radial-gradient(circle at 20% 20%, #2a2a2a 0%, #0f0f0f 35%, #050505 100%);
++  display: grid; place-items: center; text-align: center;
++}
++.overlay {
++  position: absolute; inset: 0;
++  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
++  background-size: 40px 40px;
++  mask-image: radial-gradient(circle at center, black 50%, transparent 100%);
++}
++.hero-content { position: relative; z-index: 2; }
++.tag { letter-spacing: .35em; text-transform: uppercase; color: var(--muted); font-size: .75rem; }
++h1 { font-size: clamp(3rem, 10vw, 8rem); margin: .5rem 0 0; }
++.lead { color: var(--muted); }
++.scroll-indicator { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); letter-spacing: .25em; font-size: .72rem; }
++
++.panel { min-height: 80vh; padding: 14vh 8vw; border-top: 1px solid var(--line); display: flex; align-items: center; }
++.panel-inner { max-width: 720px; }
++h2 { font-size: clamp(1.5rem, 4vw, 2.4rem); margin: 0 0 1rem; }
++p, li { color: #ddd; line-height: 1.9; }
++
++.discography {
++  background: linear-gradient(180deg, #cd1111 0%, #9f0909 100%);
++  padding: 5rem 4vw;
++  border-top: 1px solid #f3be4f66;
++  border-bottom: 1px solid #f3be4f66;
++}
++.discography-header {
++  background: var(--paper);
++  color: #b31515;
++  border-radius: 18px;
++  text-align: center;
++  padding: 2.2rem 1rem 1.4rem;
++  transform: rotate(-1deg);
++  margin: 0 auto 2rem;
++  max-width: 980px;
++}
++.discography-header h2 {
++  font-size: clamp(2.2rem, 8vw, 6rem);
++  letter-spacing: .03em;
++  font-weight: 900;
++  margin: 0;
++}
++.discography-header p { color: #1b3f84; font-size: clamp(1rem, 2.5vw, 1.8rem); font-weight: 700; margin: .5rem 0 0; }
++
++.seat-grid {
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
++  gap: 1.4rem;
++  max-width: 1100px;
++  margin: 0 auto;
++}
++.seat-card {
++  background: linear-gradient(180deg, #dc2c2c 0%, #980f0f 100%);
++  border-radius: 24px;
++  padding: .9rem;
++  box-shadow: 0 14px 24px rgba(0,0,0,.45);
++}
++.jacket {
++  height: 250px;
++  border-radius: 14px;
++  border: 3px solid #e7d8a6;
++  background-size: cover;
++}
++.plate {
++  background: var(--paper);
++  border-radius: 12px;
++  margin-top: .75rem;
++  padding: .6rem;
++  text-align: center;
++}
++.plate h3 { color: #0f397f; margin: 0; font-size: 1.8rem; }
++.plate span { color: #bf1616; font-weight: 700; }
++
++.beast { background-image: linear-gradient(160deg,#2a0218,#7b1535 40%,#14141f); }
++.yohaku { background-image: linear-gradient(150deg,#86a0bd,#244668 50%,#0f121d); }
++.green { background-image: radial-gradient(circle at 40% 40%,#c6ff52 0,#78b339 35%,#2b3d17 100%); }
++.mustard { background-image: linear-gradient(150deg,#ffd348,#ea9a00 55%,#7a3e0b); }
++.akogare { background-image: linear-gradient(170deg,#4db1ff,#183b77 55%,#111b2e); }
++.hitomi { background-image: linear-gradient(140deg,#7a4f3d,#2f1714 40%,#0e0e0e); }
++.mujina { background-image: radial-gradient(circle at 50% 35%,#48c1ff 0,#143968 38%,#060b1a 100%); }
++
++.button { display:inline-block; margin-top:1rem; padding:.7rem 1.1rem; border:1px solid var(--text); color:var(--text); text-decoration:none; transition:.2s; }
++.button:hover { background:#f3f3f3; color:#111; }
++
++.reveal { opacity: 0; transform: translateY(30px); transition: opacity .9s ease, transform .9s ease; }
++.reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+EOF
+)
